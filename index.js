@@ -1,5 +1,12 @@
 import axios from "axios"
 import * as cheerio from 'cheerio';
+import OpenAI from "openai";
+import dotenv from "dotenv"
+
+dotenv.config()
+
+const openai = new OpenAI();
+
 
 async function scrapeWebpage(url) {
     const { data } = await axios.get(url)
@@ -30,4 +37,9 @@ async function scrapeWebpage(url) {
 
 }
 
-scrapeWebpage("https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html").then(console.log)
+try {
+    scrapeWebpage("https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html").then(console.log)
+} catch (error) {
+    console.log(error)
+}
+
